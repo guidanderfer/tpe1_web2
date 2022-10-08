@@ -36,3 +36,35 @@ function traer_productoconcategoria(){
 
     return $query->fetchAll(PDO::FETCH_OBJ);
 }
+
+function insertar_producto($equipo, $talle, $precio, $version, $id_marca_fk){
+    $bd = traerbd();
+    $query = $bd->prepare("INSERT INTO producto (Equipo, Imagen, Talle, Precio, version, Id_marca_fk) VALUES (?, ?, ?, ?, ?, ?)");
+    $query->execute([$equipo, NULL, $talle, $precio, $version, $id_marca_fk]);
+    return $bd->lastInsertId();
+
+}
+
+function insertar_marca($nombre){
+    $bd = traerbd();
+    $query = $bd->prepare("INSERT INTO marca (Nombre) VALUES (?)");
+    $query->execute([$nombre]);
+    return $bd->lastInsertId();
+
+
+}
+
+function borrar_productoporid($id){
+    $bd = traerbd();
+    $query = $bd->prepare("DELETE FROM producto where Id = ?");
+    $query->execute([$id]);
+
+
+}
+
+function borrar_marcaporid($id){
+    $bd = traerbd();
+    $query = $bd->prepare("DELETE FROM marca where Id = ?");
+    $query->execute([$id]);
+}
+

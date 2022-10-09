@@ -50,7 +50,7 @@ function mostrar_categoriade_producto(){
 
 function mostrar_administrador(){
     
-    require 'header.php';
+   
     
     $productos = traer_productos();
     echo "<h1>Lista productos</h1>";

@@ -1,6 +1,7 @@
 <?php
 require_once 'controllers/productos_controller.php';
 require_once 'controllers/marcas_controller.php';
+
 require_once 'productos.php';
 
 
@@ -37,8 +38,9 @@ switch ($params[0]){
         $controlador = new productoscontrolador();
         $controlador->mostrar_marcade_producto();
         break;        
-    case 'administrador':
-        mostrar_administrador();
+    case 'administrador': 
+        $controlador = new productoscontrolador();
+        $controlador->mostrar_formulario();
         break;
     case 'agregar':
         $controlador = new productoscontrolador();

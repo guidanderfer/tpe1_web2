@@ -1,49 +1,42 @@
 <?php
+require_once 'libs/smarty-4.2.1/libs/Smarty.class.php';
 
 class vistaproducto{
-    function mostrar_links_publico(){
-        echo "<h1>Que desea consultar</h1>
-        <ul>
-            <li><a href='productos'>Mostrar todos los productos</a></li>
-            <li><a href='marcas'>Mostrar Marcas</a></li>
-            <li><a href='marcaproducto'>Mostrar Marca de los productos</a></li>
-        </ul>";
 
+    private $smarty;
+
+    function __construct(){
+        $this->smarty = new Smarty();
     }
+    
 
     function mostrarproductos($productos){
+
+        $this->smarty->assign('productos', $productos);
+
+        $this->smarty->display('templates/mostrar_productos.tpl');
         
 
-        echo "<ul>";
-        foreach($productos as $producto){
-            
-            echo "<li> $producto->Equipo </li>";
-    
-            
-           
-        }
-        echo "</ul>";
     }
     function mostrarproductoespecifico($productos, $nombre){
-        echo "<ul>";
-        foreach($productos as $producto){
-            if($producto->Equipo == $nombre){
-                echo "<li> $producto->Equipo</li>";
+        $this->smarty->assign('productos', $productos);
+        $this->smarty->assign('nombre', $nombre);
+        $this->smarty->display('templates/mostrarproducto_especifico.tpl');
 
-            }
-          
-        }
-        echo "</ul>";
     }
 
     function mostrarproductosmarca($categoriaproductos){
-        echo "<ul>";
+        $this->smarty->assign('productos', $categoriaproductos);
+        
+        $this->smarty->display('templates/mostrar_marcaproductos.tpl');
+
     
-        foreach($categoriaproductos as $categoriaproducto){
-            echo "<li> $categoriaproducto->Equipo, $categoriaproducto->Nombre</li>";
-        }
-        echo "</ul>";
-    
+    }
+    function mostrarformulario($productos, $marcas){
+        $this->smarty->assign('productos', $productos);
+        $this->smarty->assign('marcas', $marcas);
+        $this->smarty->display('templates/formularios.tpl');
+
     }
 
 }

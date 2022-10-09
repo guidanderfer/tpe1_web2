@@ -14,7 +14,7 @@ class marcascontrolador{
 
     function mostrar_categorias(){
     
-        $this->vista->mostrar_links_publico();
+        
         
         $categorias = $this->modelo->traer_marcas();
 

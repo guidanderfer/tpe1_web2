@@ -1,20 +1,23 @@
 <?php
 require_once 'modelos/productos_modelo.php';
 require_once 'vistas/productos_vista.php';
+require_once 'modelos/marcas_modelo.php';
 
 class productoscontrolador{
 
     private $modelo;
     private $vista;
+    private $modelomarca;
 
     function __construct(){
         $this->modelo = new modeloproducto();
         $this->vista = new vistaproducto();
+        $this->modelomarca = new marcasmodelo();
 
     }
 
     function mostrar_productos(){
-        $this->vista->mostrar_links_publico();
+        
     
         $productos = $this->modelo->traer_productos();
         
@@ -50,10 +53,16 @@ class productoscontrolador{
     }
 
     function mostrar_marcade_producto(){
-        $this->vista->mostrar_links_publico();
-    
-        $categoriaproductos = $this->modelo->traer_productoconcategoria();
+       $categoriaproductos = $this->modelo->traer_productoconcategoria();
     
        $this->vista->mostrarproductosmarca($categoriaproductos);
+    }
+
+    function mostrar_formulario(){
+        $productos = $this->modelo->traer_productos();
+        $marcas = $this->modelomarca->traer_marcas();
+
+        
+        $this->vista->mostrarformulario($productos,$marcas);
     }
 }

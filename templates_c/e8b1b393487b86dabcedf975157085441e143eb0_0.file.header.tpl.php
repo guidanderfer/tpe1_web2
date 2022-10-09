@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.2.1, created on 2022-10-09 05:34:07
+  from 'C:\xampp\htdocs\web2\tpe1_web2\templates\header.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.1',
+  'unifunc' => 'content_6342412fde05e1_36444825',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'e8b1b393487b86dabcedf975157085441e143eb0' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\web2\\tpe1_web2\\templates\\header.tpl',
+      1 => 1665274342,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_6342412fde05e1_36444825 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <base href="'.BASE_URL.'">
@@ -30,52 +53,5 @@
                 </div>
         </nav>
    
-    </header>
-    <h1>Productos</h1>
-    <form action="agregar" method="post">
-        <label for="">Equipo</label>
-        <input type="text" name="equipo">
-        <label for="">Talle</label>
-        <input type="text" name="talle">
-        <label for="">Precio</label>
-        <input type="text" name="precio">
-        <label for="">Version</label>
-        <input type="text" name="version">
-        <label for="">Id_marca_fk</label>
-        <input type="text" name="id_marca_fk">
-        <button type="submit">Agregar</button>
-    </form>
-    <h1>Marca</h1>
-    <form action="agregarmarca" method="post">
-        <label for="">Marca</label>
-        <input type="text" name="marca">
-        <button type="submit">Agregar</button>
-    </form>
-    <h2>Editar Marca</h2>
-
-    <form action="editarmarca" method="post">
-        <label for="">Marca</label>
-        <input type="text" name="marca">
-        
-        
-        <button type="submit">Agregar</button>
-    </form>
-
-    
-
-
-    
-    
-
-    
-        
-        
-
-    
-
-    
-    
-    
-    
-    
-    
+    </header><?php }
+}

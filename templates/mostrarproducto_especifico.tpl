@@ -1,33 +1,24 @@
-<table>
-    <thead>
-        <tr>
-            <th>Equipo</th>
-            <th>Imagen</th>
-            <th>Talle</th>
-            <th>Precio</th>
-            <th>Version</th>
+{include file="header.tpl"}
+{foreach from=$productos item=$producto}
+    {if $producto->Id == $id}
+        <h2 class="titulo">{$producto->Equipo}</h2>
 
-        </tr>
-    </thead>
-    <tbody>
-        {foreach from=$productos item=$producto }
-            {if $producto->Equipo == $nombre}
-                <tr>
-                    <td>{$producto->Equipo}</td>
-                    <td>{$producto->Imagen}</td>
-                    <td>{$producto->Talle}</td>
-                    <td>{$producto->Precio}</td>
-                    <td>{$producto->version}</td>
-                    <td><a type="button" href="borrar/{$producto->Id}">Borrar</a></td>
-                    <td><a type="button" href="editar/{$producto->Id}">Editar</a></td>
-                
-                </tr>
+        <ul class="list-group">
+            {if isset($producto->Imagen)}
+                <li class="list-group-item"><img src="{BASE_URL}{$producto->Imagen}"/></li>
             {/if}
+            <li class="list-group-item">Talle: {$producto->Talle}</li>
+            <li class="list-group-item">Precio: {$producto->Precio}</li>
+            <li class="list-group-item">Version: {$producto->version}</li>
+            <li class="list-group-item" >Marca : {$producto->Nombre}</li>
             
+        </ul>
         
+            
+    {/if}
     
-        {/foreach}  
-    </tbody>
-     
-    
-</table>
+
+
+{/foreach}  
+
+{include file="footer.tpl"}

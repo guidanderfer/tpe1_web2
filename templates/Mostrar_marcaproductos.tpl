@@ -1,27 +1,12 @@
 {include file="header.tpl"}
-{include file="links_accesopublico.tpl"}
-<table>
-    <thead>
-        <tr>
-            <th>Equipo</th>
-            <th>Marca</th>
-            
+<ul class="list-group">
+    {foreach from=$productos item=$producto}
+        {if $producto->Id_marca_fk == $id}
+            <li class="list-group-item">{$producto->Equipo}</li>
+        {/if}
+    {/foreach}
+    
+</ul>
 
-        </tr>
-    </thead>
-    <tbody>
-        {foreach from=$productos item=$producto }
-            <tr>
-                <td>{$producto->Equipo}</td>
-                <td>{$producto->Nombre}</td>
-                
-            </tr>
-        
-    
-        {/foreach}  
-    </tbody>
-     
-    
-</table>
 
 {include file="footer.tpl"}

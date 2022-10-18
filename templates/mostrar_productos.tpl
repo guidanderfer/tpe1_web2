@@ -1,13 +1,15 @@
-{include file="header.tpl"}
-{include file="links_accesopublico.tpl" assign=name var1=value}
-<table>
+
+<h2 class="titulo">Lista de camisetas</h2>
+<table class="table table-hover">
     <thead>
         <tr>
             <th>Equipo</th>
-            <th>Imagen</th>
-            <th>Talle</th>
-            <th>Precio</th>
-            <th>Version</th>
+            <th>Detalles</th>
+            {if isset($smarty.session.email)}
+                <th>Borrar</th>
+                <th>Editar</th>
+            {/if}
+            
 
         </tr>
     </thead>
@@ -15,12 +17,15 @@
         {foreach from=$productos item=$producto }
             <tr>
                 <td>{$producto->Equipo}</td>
-                <td>{$producto->Imagen}</td>
-                <td>{$producto->Talle}</td>
-                <td>{$producto->Precio}</td>
-                <td>{$producto->version}</td>
-                <td><a type="button" href="borrar/{$producto->Id}">Borrar</a></td>
-                <td><a type="button" href="editar/{$producto->Id}">Editar</a></td>
+                <td><a type="button" class="btn btn-info" href="producto/{$producto->Id}">Ver detalles</a></td>  
+                {if !empty($smarty.session.email)}
+                    <td><a type="button" class="btn btn-danger" href="borrarproducto/{$producto->Id}">Borrar</a></td>
+                    <td><a type="button" class="btn btn-success" href="formeditarproducto/{$producto->Id}">Editar</a></td>
+                {/if}
+                
+                
+                
+                
                 
             </tr>
         
@@ -30,4 +35,3 @@
      
     
 </table>
-{include file="footer.tpl"}

@@ -1,104 +1,98 @@
-{include file="header.tpl" }
+{include file="header.tpl"}
+<div class="logout">
+  <a class="btn btn-primary" role="button" href="logout">Logout</a>
+</div>
 
-<h1> Agregar Productos</h1>
+
+<h2 class="titulo"> Agregar Productos</h2>
+
+<form action="agregarproducto" method="post" enctype="multipart/form-data" class="row g-3 needs-validation" >
+  <div class="col-md-4 position-relative">
+    <label for="validationTooltip01" class="form-label">Equipo</label>
+    <input type="text" class="form-control" id="validationTooltip01" name="equipo" required>
     
-<form action="agregar" method="post">
-    <label for="">Equipo</label>
-    <input type="text" name="equipo">
-    <label for="">Talle</label>
-    <select name="talle">
-        <option value="S">S</option>
-        <option value="M">M</option>
-        <option value="L">L</option>
-        <option value="XL">XL</option>
-        <option value="XXL">XXL</option>
+  </div>
+  <div class="col-md-4 position-relative">
+    <label for="validationTooltip02" class="form-label">Precio</label>
+    <input type="text" class="form-control" id="validationTooltip02" name="precio" required>
+    
+  </div>
+  
+  
+  <div class="col-md-3 position-relative">
+    <label for="validationTooltip04" class="form-label">Talle</label>
+    <select class="form-select" id="validationTooltip04" name="talle" required>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
     </select>
     
-    <label for="">Precio</label>
-    <input type="text" name="precio">
-    <label for="">Version</label>
-    <select name="version">
-        <option value="Comercial">Comercial</option>
-        <option value="Match">Match</option>
-        
+  </div>
+  <div class="col-md-3 position-relative">
+    <label for="validationTooltip05" class="form-label">Version</label>
+    <select class="form-select" id="validationTooltip05" name="version" required>
+      <option value="Comercial">Comercial</option>
+      <option value="Jugador">Jugador</option>
     </select>
     
-    <label for="">Marca</label>
-    <select name="id_marca_fk">
-    {foreach from=$marcas item=$marca}
+  </div>
+  <div class="col-md-3 position-relative">
+    <label for="validationTooltip06" class="form-label">Marca</label>
+    <select class="form-select" id="validationTooltip06" name="id_marca_fk" required>
+      {foreach from=$marcas item=$marca}
         
-        <option value={$marca->Id}>{$marca->Nombre}</option>
+        <option value={$marca->Id_marca}>{$marca->Nombre}</option>
         
-    {/foreach}
+      {/foreach}
     </select>
+   
+  </div>
+  <div class="col-md-3 position-relative">
+    <label for="validationTooltip07" class="form-label">Imagen</label>
+    <input class="form-control" type="file" name="input_name" id="imageToUpload">
     
-    <button type="submit">Agregar</button>
+  </div>
+    
+
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Agregar</button>
+  
+    
+  </div>
+</form>
+    
+
+
+<h2 class="titulo">Agregar Marca</h2>
+<form action="agregarmarca" method="post" enctype="multipart/form-data"  class="row row-cols-lg-auto g-3 align-items-center">
+  <div class="col-12">
+    <label class="visually-hidden">Marca</label>
+    <div class="input-group">      
+      <input type="text" name="marca" class="form-control" placeholder="Marca" required>
+    </div>
+  </div>
+  <div class="col-12">
+    <label for="validationTooltip07" class="visually-hidden" >Imagen</label>
+    <input class="form-control" type="file" name="input_name" id="imageToUpload">
+    
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Agregar</button>
+  </div>
 </form>
 
-<h1>Agregar Marca</h1>
-<form action="agregarmarca" method="post">
-    <label for="">Marca</label>
-    <input type="text" name="marca">
-    <button type="submit">Agregar</button>
-</form>
 
-<h1>Lista de camisetas</h1>
-<table>
-    <thead>
-        <tr>
-            <th>Equipo</th>
-            <th>Imagen</th>
-            <th>Talle</th>
-            <th>Precio</th>
-            <th>Version</th>
 
-        </tr>
-    </thead>
-    <tbody>
-        {foreach from=$productos item=$producto }
-            <tr>
-                <td>{$producto->Equipo}</td>
-                <td>{$producto->Imagen}</td>
-                <td>{$producto->Talle}</td>
-                <td>{$producto->Precio}</td>
-                <td>{$producto->version}</td>
-                <td><a type="button" href="borrar/{$producto->Id}">Borrar</a></td>
-                <td><a type="button" href="editar/{$producto->Id}">Editar</a></td>
-                
-            </tr>
-        
-    
-        {/foreach}  
-    </tbody>
-     
-    
-</table>
 
-<h1>Lista de marcas</h1>
 
-<table>
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            
 
-        </tr>
-    </thead>
-    <tbody>
-        {foreach from=$marcas item=$marca }
-            <tr>
-                <td>{$marca->Nombre}</td>
-                <td><a type="button" href="borrarmarca/{$marca->Id}">Borrar</a></td>
-                <td><a type="button" href="editarmarca/{$marca->Id}">Editar</a></td>
-                
-            </tr>
-        
-    
-        {/foreach}  
-    </tbody>
-     
-    
-</table>
+
+{include file="mostrar_productos.tpl"}
+{include file="mostrar_marcas.tpl"}
+{include file="footer.tpl"}
+
 
 
     

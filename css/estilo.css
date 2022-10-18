@@ -1,0 +1,16 @@
+.btnlogin, .logout{
+    margin-top: 2%;
+    margin-left: 1%;
+}
+
+.titulo{
+    color: blue;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: center;
+}
+
+img{
+    height: 400px;
+}
+

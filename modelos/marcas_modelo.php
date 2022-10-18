@@ -19,23 +19,37 @@ class marcasmodelo{
         return $marca;
     }
 
-    function insertar_marca($nombre){
+    function insertar_marca($nombre, $imagen = null){
         $bd = $this->traerbd();
-        $query = $bd->prepare("INSERT INTO marca (Nombre) VALUES (?)");
-        $query->execute([$nombre]);
+        $pathImg = null;
+        if ($imagen){
+            $pathImg = $this->subir_imagen($imagen);
+        }
+        $query = $bd->prepare("INSERT INTO marca (Nombre, Imagen_marca) VALUES (?,?)");
+        $query->execute([$nombre, $pathImg]);
         return $bd->lastInsertId();
     
     
     }
     function borrar_marcaporid($id){
         $bd = $this->traerbd();
-        $query = $bd->prepare("DELETE FROM marca where Id = ?");
+        $query = $bd->prepare("DELETE FROM marca where Id_marca = ?");
         $query->execute([$id]);
     }
 
-    function editar_marcaporid($nombre, $id){
+    function editar_marcaporid($nombre, $imagen = null, $id){
         $bd = $this->traerbd();
-        $query = $bd->prepare("UPDATE marca SET Nombre = ? WHERE marca.Id = ?");
-        $query->execute([$nombre, $id]);
+        $pathImg = null;
+        if ($imagen){
+            $pathImg = $this->subir_imagen($imagen);
+        }
+        $query = $bd->prepare("UPDATE marca SET Nombre = ?, Imagen_marca = ? WHERE marca.Id_marca = ?");
+        $query->execute([$nombre,$pathImg, $id]);
+    }
+
+    private function subir_imagen($imagen){
+        $target = "img/" . uniqid() . "." . strtolower(pathinfo($imagen['name'], PATHINFO_EXTENSION));
+        move_uploaded_file($imagen['tmp_name'], $target);
+        return $target;
     }
 }
